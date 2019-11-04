@@ -21,7 +21,7 @@ RUN apt-get update \
     && apt-get -y install --no-install-recommends apt-utils dialog 2>&1 \
     #
     # Verify git, process tools, lsb-release (common in install instructions for CLIs) installed
-    && apt-get -y install git iproute2 procps lsb-release \
+    && apt-get -y install git iproute2 procps lsb-release protobuf-compiler \
     #
     # Build librdkafka
     && cd / \
@@ -63,7 +63,8 @@ RUN apt-get update \
         github.com/golangci/golangci-lint/cmd/golangci-lint \
         github.com/mgechev/revive \
         github.com/derekparker/delve/cmd/dlv \
-        gopkg.in/confluentinc/confluent-kafka-go.v1/kafka 2>&1 \
+        gopkg.in/confluentinc/confluent-kafka-go.v1/kafka \
+        github.com/golang/protobuf/protoc-gen-go 2>&1 \
     #
     # Create a non-root user to use if preferred - see https://aka.ms/vscode-remote/containers/non-root-user.
     && groupadd --gid $USER_GID $USERNAME \
